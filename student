@@ -13,3 +13,63 @@ VALUES ('Каміла', 'Шевченко', '2007-12-04'),
 ('Маргарита', 'Одарюк', '2008-04-20');
 -- comment example
 select * from students;
+
+
+
+CREATE DATABASE school_1;
+USE school_1;
+
+CREATE TABLE student (
+id INT auto_increment primary key, 
+first_name VARCHAR(50), 
+last_name VARCHAR(50), 
+birth_date DATE
+); 
+
+CREATE TABLE teachert (
+id INT auto_increment primary key, 
+first_name VARCHAR(50), 
+last_name VARCHAR(50), 
+birth_date DATE,
+salary INT 
+); 
+
+
+CREATE TABLE class (
+id INT auto_increment primary key, 
+start_date DATE,
+letter VARCHAR(1)
+); 
+
+-- Зв'язок клас ↔️ учні (багато до багатьох)
+CREATE TABLE class_student (
+    class_id INT,
+    student_id INT,
+    PRIMARY KEY (class_id, student_id),
+    FOREIGN KEY (class_id) REFERENCES class(id),
+    FOREIGN KEY (student_id) REFERENCES student(id)
+);
+
+-- Таблиця предметів
+CREATE TABLE subject (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+-- Таблиця уроків (розклад)
+CREATE TABLE lesson (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    lesson_number INT,           -- 1–8
+    subject_id INT,
+    class_id INT,
+    teacher_id INT,
+    FOREIGN KEY (subject_id) REFERENCES subject(id),
+    FOREIGN KEY (class_id) REFERENCES class(id),
+    FOREIGN KEY (teacher_id) REFERENCES teacher(id)
+);
+
+INSERT INTO student (first_name, last_name, birth_date)
+VALUES ('Каміла', 'Шевченко', '2007-12-04'),
+('Маргарита', 'Одарюк', '2008-04-20');
+-- comment example
+select * from students;

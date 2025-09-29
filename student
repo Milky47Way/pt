@@ -1,0 +1,15 @@
+CREATE DATABASE school;
+USE school;
+
+CREATE TABLE student (
+id INT auto_increment primary key, 
+first_name VARCHAR(50), 
+last_name VARCHAR(50), 
+birth_date DATE
+); 
+
+INSERT INTO student (first_name, last_name, birth_date)
+VALUES ('Каміла', 'Шевченко', '2007-12-04'),
+('Маргарита', 'Одарюк', '2008-04-20');
+-- comment example
+select * from students;
